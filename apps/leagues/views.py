@@ -4,6 +4,8 @@ from .models import League, Team, Player
 from . import team_maker
 
 def index(request):
+
+	# Level 1
 	''' context = {
 		"leagues": League.objects.filter(sport="Baseball")
 	}
@@ -66,70 +68,41 @@ def index(request):
 
 	context = {
 		"players": Player.objects.filter(first_name="Alexander")|Player.objects.filter(first_name="Wyatt")
+	}'''
+
+	# Level 2
+
+	context = {
+		"teams": Team.objects.filter(league__name="Atlantic Soccer Conference")
 	}
 
 	context = {
-		"teams": League.objects.get(name="Atlantic Soccer Conference").teams.all()
+		"players": Player.objects.filter(curr_team__location="Boston", curr_team__team_name="Penguins")
 	}
 
 	context = {
-		"players": Team.objects.get(team_name="Penguins", location="Boston").curr_players.all()
+		"players": Player.objects.filter(curr_team__league__name='International Collegiate Baseball Conference')
 	}
 
-	context = {"players": []}
-	teams = League.objects.get(name="International Collegiate Baseball Conference").teams.all()
-	for team in teams:
-		team_players = team.curr_players.all()
-		for player in team_players:
-			context['players'].append(player)
-	
-	context = {"players": []}
-	teams = League.objects.get(name="American Conference of Amateur Football").teams.all()
-	for team in teams:
-		team_players = team.curr_players.all().filter(last_name="Lopez")
-		for player in team_players:
-			context['players'].append(player)
-	
-	context = {"players": []}
-	leagues = League.objects.filter(sport="Football")
-	for league in leagues:
-		teams = league.teams.all()
-		for team in teams:
-			team_players = team.curr_players.all()
-			for player in team_players:
-				context['players'].append(player)
-	
-	context = {"teams": []}
-	teams = Team.objects.all()
-	for team in teams:
-		players = team.curr_players.all()
-		for player in players:
-			if player.first_name == "Sophia":
-				context['teams'].append(team)
-				break
-	
-	context = {"leagues": []}
-	player_found = False
-	leagues = League.objects.all()
-	for league in leagues:
-		player_found = False
-		teams = league.teams.all()
-		for team in teams:
-			if player_found == True:
-				break
-			players = team.curr_players.all()
-			for player in players:
-				if player.first_name == "Sophia":
-					context['leagues'].append(league)
-					player_found = True
-					break '''
-	
-	context = {"players": []}
-	players = Player.objects.filter(last_name="Flores")
-	for player in players:
-		if player.curr_team.team_name != "Roughriders" and player.curr_team.location != "Washington":
-			context['players'].append(player)
+	context = {
+		"players": Player.objects.filter(last_name="Lopez", curr_team__league__name='American Conference of Amateur Football')
+	}
 
+	context = {
+		"players": Player.objects.filter(curr_team__league__sport='Football')
+	}
+
+	context = {
+		"teams": Team.objects.filter(curr_players__first_name='Sophia')
+	}
+
+	context = {
+		"leagues": League.objects.filter(teams__curr_players__first_name='Sophia')
+	}
+
+	context = {
+		"players": Player.objects.filter(last_name="Flores").exclude(curr_team__location="Washington", curr_team__team_name="Roughriders")
+	}
 
 	return render(request, "leagues/index.html", context)
 
