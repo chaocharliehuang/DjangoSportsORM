@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import League, Team, Player
-
+from django.db.models import Count
 from . import team_maker
 
 def index(request):
-
 	# Level 1
+
 	''' context = {
 		"leagues": League.objects.filter(sport="Baseball")
 	}
@@ -72,7 +72,7 @@ def index(request):
 
 	# Level 2
 
-	context = {
+	''' context = {
 		"teams": Team.objects.filter(league__name="Atlantic Soccer Conference")
 	}
 
@@ -102,6 +102,36 @@ def index(request):
 
 	context = {
 		"players": Player.objects.filter(last_name="Flores").exclude(curr_team__location="Washington", curr_team__team_name="Roughriders")
+	} '''
+
+	# Level 3
+
+	context = {
+		"teams": Player.objects.get(first_name="Samuel", last_name="Evans").all_teams.all()
+	}
+
+	context = {
+		"players": Team.objects.get(location="Manitoba", team_name="Tiger-Cats").all_players.all()
+	}
+
+	context = {
+		"players": Team.objects.get(location="Wichita", team_name="Vikings").all_players.all().exclude(curr_team__location="Wichita", curr_team__team_name="Vikings")
+	}
+
+	context = {
+		"teams": Player.objects.get(first_name="Jacob", last_name="Gray").all_teams.all().exclude(location="Oregon", team_name="Colts")
+	}
+
+	context = {
+		"players": Player.objects.filter(first_name="Joshua", all_teams__league__name="Atlantic Federation of Amateur Baseball Players")
+	}
+
+	context = {
+		"teams": Team.objects.annotate(num_players=Count('all_players')).filter(num_players__gte="12")
+	}
+
+	context = {
+		"players": Player.objects.annotate(num_teams=Count('all_teams')).order_by('num_teams')
 	}
 
 	return render(request, "leagues/index.html", context)
