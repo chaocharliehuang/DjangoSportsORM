@@ -4,28 +4,116 @@
 		<title>Sports Leagues</title>
 	</head>
 	<body>
-		<h1>Leagues</h1>
+		<!-- <h1>1. Baseball Leagues</h1>
 		<ol>
 			{% for league in leagues %}
-				<li>{{league.name}}</li>
-			{% empty %}
-				<p>No leagues found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			<li>{{league.name}}</li>
 			{% endfor %}
-		</ol>
-		<h1>Teams</h1>
+		</ol> -->
+
+		<!-- <h1>2. Women's Leagues</h1>
+		<ol>
+			{% for league in leagues %}
+			<li>{{league.name}}</li>
+			{% endfor %}
+		</ol> -->
+
+		<!-- <h1>3. Hockey Leagues</h1>
+		<ol>
+			{% for league in leagues %}
+			<li>{{league.name}}</li>
+			{% endfor %}
+		</ol> -->
+
+		<!-- <h1>4. Leagues NOT football</h1>
+		<ol>
+			{% for league in leagues %}
+			<li>{{league.name}}</li>
+			{% endfor %}
+		</ol> -->
+
+		<!-- <h1>5. Leagues that call themselves "conferences"</h1>
+		<ol>
+			{% for league in leagues %}
+			<li>{{league.name}}</li>
+			{% endfor %}
+		</ol> -->
+
+		<!-- <h1>6. Leagues in Atlantic region</h1>
+		<ol>
+			{% for league in leagues %}
+			<li>{{league.name}}</li>
+			{% endfor %}
+		</ol> -->
+
+		<!-- <h1>7. Teams based in Dallas</h1>
 		<ol>
 			{% for team in teams %}
-				<li>{{team.location}} {{team.team_name}}</li>
-			{% empty %}
-				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			<li>{{team.location}} {{team.team_name}}</li>
 			{% endfor %}
 		</ol>
-		<h1>Players</h1>
+		</ol> -->
+<!-- 
+		<h1>8. Teams named "Raptors"</h1>
+		<ol>
+			{% for team in teams %}
+			<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>9. Teams whose location includes "City"</h1>
+		<ol>
+			{% for team in teams %}
+			<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>10. Teams whose names begin with "T"</h1>
+		<ol>
+			{% for team in teams %}
+			<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>11. Teams ordered alphabetically by location</h1>
+		<ol>
+			{% for team in teams %}
+			<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>12. Teams reverse-ordered alphabetically by location</h1>
+		<ol>
+			{% for team in teams %}
+			<li>{{team.location}} {{team.team_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>13. Players with last name "Cooper"</h1>
 		<ol>
 			{% for player in players %}
-				<li>{{player.first_name}} {{player.last_name}}</li>
-			{% empty %}
-				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			<li>{{player.first_name}} {{player.last_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>14. Players with first name "Joshua"</h1>
+		<ol>
+			{% for player in players %}
+			<li>{{player.first_name}} {{player.last_name}}</li>
+			{% endfor %}
+		</ol> -->
+<!-- 
+		<h1>15. Players with last name "Cooper" whose first name is not "Joshua"</h1>
+		<ol>
+			{% for player in players %}
+			<li>{{player.first_name}} {{player.last_name}}</li>
+			{% endfor %}
+		</ol> -->
+
+		<h1>16. Players with first name "Alexander" OR "Wyatt"</h1>
+		<ol>
+			{% for player in players %}
+			<li>{{player.first_name}} {{player.last_name}}</li>
 			{% endfor %}
 		</ol>
 	</body>
